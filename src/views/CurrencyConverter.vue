@@ -11,6 +11,7 @@
                   dense
                   filled
                   :item-text="item =>`${item.id} - ${item.currencyName}`"
+                  :item-value="item => item"
                   label="From"
           ></v-autocomplete>
         </v-card-text>
@@ -26,6 +27,7 @@
                   dense
                   filled
                   :item-text="item =>`${item.id} - ${item.currencyName}`"
+                  :item-value="item => item"
                   label="To"
           ></v-autocomplete>
         </v-card-text>
@@ -104,7 +106,6 @@ export default {
       this.isLoadingConvert = true;
 
       // Lazily load input items
-      console.log(this.from,this.to)
       fetch("http://localhost:5000/convert?from=" + this.from.id + "&to=" + this.to.id)
               .then(res => res.json())
               .then(res => {
